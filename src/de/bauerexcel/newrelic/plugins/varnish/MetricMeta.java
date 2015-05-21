@@ -13,6 +13,11 @@ public class MetricMeta {
         this.unit = unit;
     }
 
+    // used for cloning
+    public MetricMeta(MetricMeta meta) {
+        this.unit = meta.getUnit();
+    }
+
     public String getUnit() {
         return unit;
     }

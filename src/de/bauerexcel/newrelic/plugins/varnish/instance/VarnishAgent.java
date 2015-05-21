@@ -50,7 +50,7 @@ public class VarnishAgent extends Agent {
 
         try {
             ArrayList<Metric> results = stats.fetch();   // Gather defined metrics
-            reportMetrics(results);                        // Report Metrics to New Relic
+            reportMetrics(results);                      // Report Metrics to New Relic
         } catch (Exception e) {
             LOGGER.error("Faild to report: ", e.getMessage());
         }
@@ -67,27 +67,51 @@ public class VarnishAgent extends Agent {
         while (iter.hasNext()) { // Iterate over current metrics
             Metric metric = iter.next();
             MetricMeta md = getMetricMeta(metric);
-            if (md != null) { // Metric Meta data exists (from metric.category.json)
-                //LOGGER.debug(METRIC_LOG_PREFIX, key, " ", md, EQUALS, val);
-                count++;
+            if (!metric.isBitmap()) {
+                if (md != null) { // Metric Meta data exists (from metric.category.json)
+                    LOGGER.debug("Metric '", getMetricSpec(metric), "' = '", metric.getValue(), "'");
+                    count++;
 
-                if (metric.isCounter()) { // Metric is a counter
-                    reportMetric(getMetricSpec(metric), md.getUnit(), md.getCounter().process(metric.getValue()));
-                } else { // Metric is a fixed Number
-                    reportMetric(getMetricSpec(metric), md.getUnit(), metric.getValue());
+                    if (metric.isCounter()) { // Metric is a counter
+                        reportMetric(getMetricSpec(metric), md.getUnit() + "/Second", md.getCounter().process(metric.getValue()));
+                    } else { // Metric is a fixed Number
+                        String unit = md.getUnit();
+                        if (metric.isGauge()) {
+                            unit += "/Second";
+                        }
+                        reportMetric(getMetricSpec(metric), unit, metric.getValue());
+                    }
+                } else { // md != null
+                    if (firstReport) { // Provide some feedback of available metrics for future reporting
+                        LOGGER.debug("Not reporting identified metric ", getMetricSpec(metric));
+                    }
                 }
-            } else { // md != null
-                if (firstReport) { // Provide some feedback of available metrics for future reporting
-                    LOGGER.debug("Not reporting identified metric ", getMetricSpec(metric));
+            } else { // bitmap values are not supported
+                if (firstReport) { // Provide some feedback of unsupported metrics for future reporting
+                    LOGGER.debug("Not reporting unsupported metric ", getMetricSpec(metric));
                 }
             }
+
         }
 
         LOGGER.debug("Reported to New Relic ", count, " metrics. ", getAgentInfo());
     }
 
     private MetricMeta getMetricMeta(Metric metric) {
-        return meta.get(metric.getType() + "/" + metric.getName());
+        MetricMeta meta = this.meta.get(metric.getType() + "/" + metric.getName());
+        if (metric.hasIdent()) {
+            // if an identifier exists, multiple meta objects with the same name exsit
+            if (this.meta.containsKey(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName())) {
+                meta = this.meta.get(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName());
+            }
+            else {
+                // we have to clone the originaly created meta object which did not contain the identifier
+                meta = new MetricMeta(meta);
+                this.meta.put(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName(), meta);
+            }
+        }
+
+        return meta;
     }
 
     private String getMetricSpec(Metric metric) {
@@ -96,11 +120,10 @@ public class VarnishAgent extends Agent {
         if (metric.hasIdent()) {
             spec.append("/").append(metric.getIdent());
         }
-        spec.append("/").append(metric.getName()).append("/").append(metric.getLabel());
+        spec.append("/").append(metric.getLabel());
 
         return spec.toString();
     }
-
 
     private String getAgentInfo() {
         if (agentInfo == null) {
