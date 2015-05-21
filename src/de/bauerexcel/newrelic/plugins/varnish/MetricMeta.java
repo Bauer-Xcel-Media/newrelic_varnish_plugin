@@ -3,8 +3,17 @@ package de.bauerexcel.newrelic.plugins.varnish;
 import com.newrelic.metrics.publish.processors.EpochCounter;
 
 /**
- * Created by jan.schumann on 20.05.15.
+ * Contains metadata for a metric
+ *
+ * - the unit name as configured through plugin.json
+ * - previous values are kept through an EpochCounter if needed.
+ *   NOTE that the fact if a metric is a counter or not
+ *   is not a part of the metadata, as it is kept in the metrics themselves
+ *   @see Metric
+ *
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
+
 public class MetricMeta {
     private final String unit;
     private EpochCounter counter;

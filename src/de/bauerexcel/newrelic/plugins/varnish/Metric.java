@@ -3,7 +3,9 @@ package de.bauerexcel.newrelic.plugins.varnish;
 import org.w3c.dom.Element;
 
 /**
- * Created by jan.schumann on 20.05.15.
+ * Represents a metric provided by varnishstats
+ *
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
 public class Metric {
 

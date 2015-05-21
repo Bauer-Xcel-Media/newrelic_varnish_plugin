@@ -4,9 +4,9 @@ import com.newrelic.metrics.publish.Runner;
 import com.newrelic.metrics.publish.configuration.ConfigurationException;
 
 /**
- * Main class for Wikipedia Agent Example
+ * Main class for Varnish Agent
  *
- * @author jschumann
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
 public class Main {
 

@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * AgentFactory
  *
- * @author jschumann
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
 public class VarnishAgentFactory extends AgentFactory {
 

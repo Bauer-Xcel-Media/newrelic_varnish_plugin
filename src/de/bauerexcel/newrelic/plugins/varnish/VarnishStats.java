@@ -16,7 +16,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by jan.schumann on 20.05.15.
+ * Collects Varnish metrics via the varnishstat command
+ *
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
 public class VarnishStats {
     private final static String COMMAND = "varnishstat -1 -x";
@@ -31,6 +33,11 @@ public class VarnishStats {
         this.command = COMMAND;
     }
 
+    /**
+     * Add an instance name to the command
+     *
+     * @param instance The name of the varnish instance
+     */
     public void setInstance(String instance) {
         if (!instanceSet && null != instance) {
             this.command += " -n " + instance;
@@ -38,6 +45,11 @@ public class VarnishStats {
         }
     }
 
+    /**
+     * Add ssh connection command prefix
+     *
+     * @param command The ssh command to connect to the varnish node
+     */
     public void setSshCommand(String command) {
         if (!sshCommandSet && null != command) {
             this.command = command + " -q " + this.command;
@@ -45,6 +57,12 @@ public class VarnishStats {
         }
     }
 
+    /**
+     * Runs the stats command runs without errors
+     * If an error occurs, it can be retrieved via getError()
+     *
+     * @return Boolean
+     */
     public Boolean isValid() {
         try {
             getStats();
@@ -56,10 +74,43 @@ public class VarnishStats {
         return true;
     }
 
+    /**
+     * Fetch Statsisics
+     *
+     * @return ArrayList<Metric>
+     *
+     * @throws InterruptedException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
+    public ArrayList<Metric> fetch() throws InterruptedException, ParserConfigurationException, SAXException, IOException {
+        ArrayList<Metric> results = new ArrayList();
+
+        NodeList stats = getStats();
+        for (int i = 0; i < stats.getLength(); i++) {
+            Element statsElement = (Element) stats.item(i);
+            Metric metric = new Metric(statsElement);
+            results.add(metric);
+        }
+
+        return results;
+    }
+
+    /**
+     * Contains the error message, if an error occured by isValid()
+     *
+     * @return String
+     */
     public String getError() {
         return error;
     }
 
+    /**
+     * Get the command this instances uses to gather data
+     *
+     * @return String
+     */
     public String getCommand() {
         return command;
     }
@@ -84,19 +135,4 @@ public class VarnishStats {
 
         return nlist;
     }
-
-
-    public ArrayList<Metric> fetch() throws InterruptedException, ParserConfigurationException, SAXException, IOException {
-        ArrayList<Metric> results = new ArrayList();
-
-        NodeList stats = getStats();
-        for (int i = 0; i < stats.getLength(); i++) {
-            Element statsElement = (Element) stats.item(i);
-            Metric metric = new Metric(statsElement);
-            results.add(metric);
-        }
-
-        return results;
-    }
-
 }

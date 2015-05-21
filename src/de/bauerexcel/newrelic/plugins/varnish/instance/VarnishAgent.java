@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * An agent for VarnishStats.
  *
- * @author jstenhouse
+ * @author Jan Schumann <jan.schumann@bauerexcel.de>
  */
 public class VarnishAgent extends Agent {
 
@@ -58,7 +58,7 @@ public class VarnishAgent extends Agent {
         firstReport = false;
     }
 
-    public void reportMetrics(ArrayList<Metric> results) {
+    private void reportMetrics(ArrayList<Metric> results) {
         int count = 0;
         LOGGER.debug("Collected ", results.size(), " Varnish metrics. ", getAgentInfo());
         LOGGER.debug(results);
@@ -105,7 +105,7 @@ public class VarnishAgent extends Agent {
                 meta = this.meta.get(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName());
             }
             else {
-                // we have to clone the originaly created meta object which did not contain the identifier
+                // we have to clone the originally created meta object which did not contain the identifier in the key
                 meta = new MetricMeta(meta);
                 this.meta.put(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName(), meta);
             }
