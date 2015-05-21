@@ -2,6 +2,13 @@
 
 Find the New Relic Varnish plugin in [Plugin Central](https://rpm.newrelic.com/extensions/de.bauerexcel.newrelic.plugins.varnish)
 
+The Varnish plugin was originally authored by [@juanformoso](https://github.com/threelegs/newrelic-plugins) but it is discontinued.
+
+**Added features:**
+
+* Installable through [NPI](https://discuss.newrelic.com/t/getting-started-for-the-platform-installer/842).
+* Support for Varnish 4
+
 ----
 
 ## Requirements
@@ -40,6 +47,7 @@ For [Chef](http://www.getchef.com) and [Puppet](http://puppetlabs.com) support s
 Additional information on using Chef and Puppet with New Relic is available in New Relic's [documentation](https://docs.newrelic.com/docs/plugins/plugin-installation-with-chef-and-puppet).
 
 Find an example puppet moduele in resources/puppet
+**TODO** Find an example puppet moduele in resources/puppet
 
 ### Option 3 - Install Manually (Non-standard)
 
@@ -82,6 +90,8 @@ If you prefer to be more involved in the maintaince of the process, consider one
 - [Systemd](http://www.freedesktop.org/wiki/Software/systemd/)
 - [Runit](http://smarden.org/runit/)
 - [Monit](http://mmonit.com/monit/)
+
+**TODO** An example init.d file can be found in the example puppet module resources/puppet
 
 ----
 
@@ -184,6 +194,10 @@ Plugin support and troubleshooting assistance can be obtained by visiting [suppo
 **A:** Once you have a plugin reporting with the proper license key, log into New Relic [here](http://rpm.newrelic.com).  If everything was successful, you should see a new navigation item appear on the left navigation bar identifying your new plugin (This may take a few minutes).  Click on this item to see the metrics for what you were monitoring (bear in mind, some details -- such as summary metrics -- may take several minutes to show values).
 
 ----
+
+## Credits
+
+The Varnish plugin was originally authored by [@juanformoso](https://github.com/threelegs/newrelic-plugins).
 
 ## Fork me!
 
