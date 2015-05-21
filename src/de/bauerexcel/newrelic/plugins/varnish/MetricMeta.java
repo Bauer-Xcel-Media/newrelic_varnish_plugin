@@ -4,14 +4,14 @@ import com.newrelic.metrics.publish.processors.EpochCounter;
 
 /**
  * Contains metadata for a metric
- *
+ * <p/>
  * - the unit name as configured through plugin.json
  * - previous values are kept through an EpochCounter if needed.
- *   NOTE that the fact if a metric is a counter or not
- *   is not a part of the metadata, as it is kept in the metrics themselves
- *   @see Metric
+ * NOTE that the fact if a metric is a counter or not
+ * is not a part of the metadata, as it is kept in the metrics themselves
  *
  * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @see Metric
  */
 
 public class MetricMeta {

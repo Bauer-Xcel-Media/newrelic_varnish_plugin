@@ -78,7 +78,6 @@ public class VarnishStats {
      * Fetch Statsisics
      *
      * @return ArrayList<Metric>
-     *
      * @throws InterruptedException
      * @throws ParserConfigurationException
      * @throws SAXException

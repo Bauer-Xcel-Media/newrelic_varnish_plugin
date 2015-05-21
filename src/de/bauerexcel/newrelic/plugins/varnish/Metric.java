@@ -33,18 +33,17 @@ public class Metric {
 
     /**
      * Determine if this flag is a counter.
-     *
+     * <p/>
      * Possible values for the plag property are
-     *
+     * <p/>
      * - 'a' - Accumulator (deprecated, use 'c')
      * - 'b' - Bitmap
      * - 'c' - Counter, never decreases.
      * - 'g' - Gauge, goes up and down
      * - 'i' - Integer (deprecated, use 'g')
      *
-     * @todo the a flag check can be removed as soon as the next varnish release arrives
-     *
      * @return Boolean
+     * @todo the a flag check can be removed as soon as the next varnish release arrives
      */
     public Boolean isCounter() {
         String flag = getTagValue("flag");

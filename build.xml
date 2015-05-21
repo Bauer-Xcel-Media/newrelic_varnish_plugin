@@ -2,15 +2,15 @@
 <project name="newrelic_varnish_plugin" default="dist" basedir=".">
 
     <property name="version" value="1.0.0" />
-    <property name="filename" value="newrelic_varnish_plugin-${version}"/>
+    <property name="filename" value="newrelic_varnish_plugin-${version}" />
     <property name="jarfile" value="plugin.jar" />
     <property name="tarfile" value="${filename}.tar.gz" />
 
     <property name="build.dir" value="build" />
-    <property name="build.classes.dir" value="${build.dir}/classes"/>
-    <property name="build.jar.dir" value="${build.dir}/jar"/>
-    <property name="build.tar.dir" value="${build.dir}/tar"/>
-    <property name="build.tar.src.dir" value="${build.tar.dir}/${filename}"/>
+    <property name="build.classes.dir" value="${build.dir}/classes" />
+    <property name="build.jar.dir" value="${build.dir}/jar" />
+    <property name="build.tar.dir" value="${build.dir}/tar" />
+    <property name="build.tar.src.dir" value="${build.tar.dir}/${filename}" />
 
     <property name="src.dir" value="src" />
     <property name="lib.dir" value="lib" />
@@ -37,7 +37,7 @@
     <target name="compile" depends="init">
         <!--  Compile the java code  -->
         <echo>Building project...</echo>
-        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.classes.dir}" />
         <javac srcdir="${src.dir}" destdir="${build.classes.dir}" target="1.6" source="1.6">
             <classpath refid="classpath" />
         </javac>
@@ -45,7 +45,7 @@
     </target>
 
     <target name="jar" depends="compile" description="create a jar file for the application">
-        <mkdir dir="${build.jar.dir}"/>
+        <mkdir dir="${build.jar.dir}" />
         <tstamp />
         <jar destfile="${build.jar.dir}/${jarfile}">
             <manifest>
@@ -57,7 +57,7 @@
                 <attribute name="Implementation-Version" value="${version} ${TODAY}" />
                 <attribute name="Main-Class" value="de.bauerexcel.newrelic.plugins.varnish.instance.Main" />
             </manifest>
-            <fileset dir="${build.classes.dir}"/>
+            <fileset dir="${build.classes.dir}" />
             <zipfileset src="${sdk.jar}" />
         </jar>
     </target>

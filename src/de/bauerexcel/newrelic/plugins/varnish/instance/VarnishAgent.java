@@ -69,26 +69,26 @@ public class VarnishAgent extends Agent {
             MetricMeta md = getMetricMeta(metric);
             if (!metric.isBitmap()) {
                 if (md != null) { // Metric Meta data exists (from metric.category.json)
-                    LOGGER.debug("Metric '", getMetricSpec(metric), "' = '", metric.getValue(), "'");
+                    LOGGER.debug("Metric '", buildMetricSpec(metric), "' = '", metric.getValue(), "'");
                     count++;
 
                     if (metric.isCounter()) { // Metric is a counter
-                        reportMetric(getMetricSpec(metric), md.getUnit() + "/Second", md.getCounter().process(metric.getValue()));
+                        reportMetric(buildMetricSpec(metric), md.getUnit() + "/Second", md.getCounter().process(metric.getValue()));
                     } else { // Metric is a fixed Number
                         String unit = md.getUnit();
                         if (metric.isGauge()) {
                             unit += "/Second";
                         }
-                        reportMetric(getMetricSpec(metric), unit, metric.getValue());
+                        reportMetric(buildMetricSpec(metric), unit, metric.getValue());
                     }
                 } else { // md != null
                     if (firstReport) { // Provide some feedback of available metrics for future reporting
-                        LOGGER.debug("Not reporting identified metric ", getMetricSpec(metric));
+                        LOGGER.debug("Not reporting identified metric ", buildMetricSpec(metric));
                     }
                 }
             } else { // bitmap values are not supported
                 if (firstReport) { // Provide some feedback of unsupported metrics for future reporting
-                    LOGGER.debug("Not reporting unsupported metric ", getMetricSpec(metric));
+                    LOGGER.debug("Not reporting unsupported metric ", buildMetricSpec(metric));
                 }
             }
 
@@ -103,8 +103,7 @@ public class VarnishAgent extends Agent {
             // if an identifier exists, multiple meta objects with the same name exsit
             if (this.meta.containsKey(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName())) {
                 meta = this.meta.get(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName());
-            }
-            else {
+            } else {
                 // we have to clone the originally created meta object which did not contain the identifier in the key
                 meta = new MetricMeta(meta);
                 this.meta.put(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName(), meta);
@@ -114,7 +113,7 @@ public class VarnishAgent extends Agent {
         return meta;
     }
 
-    private String getMetricSpec(Metric metric) {
+    private String buildMetricSpec(Metric metric) {
         StringBuilder spec = new StringBuilder();
         spec.append("Varnish").append("/").append(metric.getType());
         if (metric.hasIdent()) {
@@ -127,7 +126,12 @@ public class VarnishAgent extends Agent {
 
     private String getAgentInfo() {
         if (agentInfo == null) {
-            agentInfo = new StringBuilder().append("Agent Name: ").append(name).append(". Agent Version: ").append(VERSION).toString();
+            agentInfo = new StringBuilder()
+                    .append("Agent Name: ")
+                    .append(name)
+                    .append(". Agent Version: ")
+                    .append(VERSION)
+                    .toString();
         }
         return agentInfo;
     }
