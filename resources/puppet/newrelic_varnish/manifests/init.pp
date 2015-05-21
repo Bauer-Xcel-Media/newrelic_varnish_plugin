@@ -1,0 +1,3 @@
+class newrelic_varnish {
+
+}

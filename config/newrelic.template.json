@@ -1,0 +1,6 @@
+{
+  "license_key": "dc1aeb8af4b215ddc193e683745ca98e4c232861",
+  "log_level": "debug",
+  "log_file_name": "newrelic_plugin.log",
+  "log_file_path": "logs"
+}
