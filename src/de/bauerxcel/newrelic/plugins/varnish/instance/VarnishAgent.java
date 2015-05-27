@@ -1,11 +1,11 @@
-package de.bauerexcel.newrelic.plugins.varnish.instance;
+package de.bauerxcel.newrelic.plugins.varnish.instance;
 
 import com.newrelic.metrics.publish.Agent;
 import com.newrelic.metrics.publish.configuration.ConfigurationException;
 import com.newrelic.metrics.publish.util.Logger;
-import de.bauerexcel.newrelic.plugins.varnish.Metric;
-import de.bauerexcel.newrelic.plugins.varnish.MetricMeta;
-import de.bauerexcel.newrelic.plugins.varnish.VarnishStats;
+import de.bauerxcel.newrelic.plugins.varnish.Metric;
+import de.bauerxcel.newrelic.plugins.varnish.MetricMeta;
+import de.bauerxcel.newrelic.plugins.varnish.VarnishStats;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,11 +14,11 @@ import java.util.Map;
 /**
  * An agent for VarnishStats.
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  */
 public class VarnishAgent extends Agent {
 
-    private static final String GUID = "de.bauerexcel.newrelic.plugins.varnish";
+    private static final String GUID = "de.bauerxcel.newrelic.plugins.varnish";
     private static final String VERSION = "1.0.0";
     private static final Logger LOGGER = Logger.getLogger(VarnishAgent.class);
 

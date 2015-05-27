@@ -1,4 +1,4 @@
-package de.bauerexcel.newrelic.plugins.varnish.instance;
+package de.bauerxcel.newrelic.plugins.varnish.instance;
 
 import com.newrelic.metrics.publish.Runner;
 import com.newrelic.metrics.publish.configuration.ConfigurationException;
@@ -6,7 +6,7 @@ import com.newrelic.metrics.publish.configuration.ConfigurationException;
 /**
  * Main class for Varnish Agent
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  */
 public class Main {
 

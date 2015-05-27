@@ -1,11 +1,11 @@
-package de.bauerexcel.newrelic.plugins.varnish.instance;
+package de.bauerxcel.newrelic.plugins.varnish.instance;
 
 import com.newrelic.metrics.publish.Agent;
 import com.newrelic.metrics.publish.AgentFactory;
 import com.newrelic.metrics.publish.configuration.Config;
 import com.newrelic.metrics.publish.configuration.ConfigurationException;
-import de.bauerexcel.newrelic.plugins.varnish.MetricMeta;
-import de.bauerexcel.newrelic.plugins.varnish.VarnishStats;
+import de.bauerxcel.newrelic.plugins.varnish.MetricMeta;
+import de.bauerxcel.newrelic.plugins.varnish.VarnishStats;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * AgentFactory
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  */
 public class VarnishAgentFactory extends AgentFactory {
 

@@ -1,6 +1,6 @@
 # New Relic Platform Varnish Plugin - Java
 
-Find the New Relic Varnish plugin in [Plugin Central](https://rpm.newrelic.com/extensions/de.bauerexcel.newrelic.plugins.varnish)
+Find the New Relic Varnish plugin in [Plugin Central](https://rpm.newrelic.com/extensions/de.bauerxcel.newrelic.plugins.varnish)
 
 The Varnish plugin was originally authored by [@juanformoso](https://github.com/threelegs/newrelic-plugins) but it is discontinued.
 
@@ -35,7 +35,7 @@ The New Relic Platform Installer (NPI) is a simple, lightweight command line too
 Once you've installed the NPI tool, run the following command:
 
 ```
-	./npi install de.bauerexcel.newrelic.plugins.varnish
+	./npi install de.bauerxcel.newrelic.plugins.varnish
 ```	
 
 This command will take care of the creation of `newrelic.json` and `plugin.json` configuration files.  See the [configuration information](#configuration-information) section for more information.
@@ -53,7 +53,7 @@ Find an example puppet moduele in resources/puppet
 
 #### Step 1 - Downloading and Extracting the Plugin
 
-The latest version of the plugin can be downloaded [here](https://rpm.newrelic.com/extensions/de.bauerexcel.newrelic.plugins.varnish).  Once the plugin is on your box, extract it to a location of your choosing.
+The latest version of the plugin can be downloaded [here](https://rpm.newrelic.com/extensions/de.bauerxcel.newrelic.plugins.varnish).  Once the plugin is on your box, extract it to a location of your choosing.
 
 **note** - This plugin is distributed in tar.gz format and can be extracted with the following command on Unix-based systems (Windows users will need to download a third-party extraction tool or use the [New Relic Platform Installer](https://discuss.newrelic.com/t/getting-started-with-the-platform-installer/842)):
 

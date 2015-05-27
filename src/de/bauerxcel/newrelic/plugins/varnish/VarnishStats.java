@@ -1,4 +1,4 @@
-package de.bauerexcel.newrelic.plugins.varnish;
+package de.bauerxcel.newrelic.plugins.varnish;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Collects Varnish metrics via the varnishstat command
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  */
 public class VarnishStats {
     private final static String COMMAND = "varnishstat -1 -x";

@@ -1,11 +1,11 @@
-package de.bauerexcel.newrelic.plugins.varnish;
+package de.bauerxcel.newrelic.plugins.varnish;
 
 import org.w3c.dom.Element;
 
 /**
  * Represents a metric provided by varnishstats
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  */
 public class Metric {
 

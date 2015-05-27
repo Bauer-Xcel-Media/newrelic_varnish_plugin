@@ -55,7 +55,7 @@
                 <attribute name="Built-Date" value="${TODAY}" />
                 <attribute name="Specification-Version" value="${version}" />
                 <attribute name="Implementation-Version" value="${version} ${TODAY}" />
-                <attribute name="Main-Class" value="de.bauerexcel.newrelic.plugins.varnish.instance.Main" />
+                <attribute name="Main-Class" value="de.bauerxcel.newrelic.plugins.varnish.instance.Main" />
             </manifest>
             <fileset dir="${build.classes.dir}" />
             <zipfileset src="${sdk.jar}" />

@@ -1,4 +1,4 @@
-package de.bauerexcel.newrelic.plugins.varnish;
+package de.bauerxcel.newrelic.plugins.varnish;
 
 import com.newrelic.metrics.publish.processors.EpochCounter;
 
@@ -10,7 +10,7 @@ import com.newrelic.metrics.publish.processors.EpochCounter;
  * NOTE that the fact if a metric is a counter or not
  * is not a part of the metadata, as it is kept in the metrics themselves
  *
- * @author Jan Schumann <jan.schumann@bauerexcel.de>
+ * @author Jan Schumann <jan.schumann@bauerxcel.de>
  * @see Metric
  */
 
