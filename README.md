@@ -105,6 +105,23 @@ You will need to modify two configuration files in order to set this plugin up t
 
 The `plugin.json` file has a provided template in the `config` directory named `plugin.template.json`.  If you are installing manually, make a copy of this template file and rename it to `plugin.json` (the New Relic Platform Installer will automatically handle creation of configuration files for you).  
 
+The plugin supports multiple agents that can be remote or local. Remote agents are accessed vi ssh. The user that runs the plugin must have ssh configured to be able to connect to the given host.
+
+```
+{
+  "agents": [
+    {
+      "name": "The name of a remote agent",
+      "user": "the ssh user",
+      "host": "the host to access via ssh"
+    },
+    {
+      "name": "The name of a local agent"
+    }
+  ]
+}
+```
+
 Metrics reported to newrelic are configured under the `metric_units` key in the `plugin.json` file. A list of available fields can be obtained via `varnishstat -l`.
 
 ```
