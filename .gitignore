@@ -8,3 +8,4 @@ bin/
 config/newrelic.json
 config/plugin.json
 logs/
+out/

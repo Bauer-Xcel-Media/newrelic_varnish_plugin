@@ -6,7 +6,6 @@ import com.newrelic.metrics.publish.util.Logger;
 import de.bauerxcel.newrelic.plugins.varnish.Metric;
 import de.bauerxcel.newrelic.plugins.varnish.MetricMeta;
 import de.bauerxcel.newrelic.plugins.varnish.VarnishStats;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -99,8 +98,8 @@ public class VarnishAgent extends Agent {
 
     private MetricMeta getMetricMeta(Metric metric) {
         MetricMeta meta = this.meta.get(metric.getType() + "/" + metric.getName());
-        if (metric.hasIdent()) {
-            // if an identifier exists, multiple meta objects with the same name exsit
+        if (null != meta && metric.hasIdent()) {
+            // if an identifier exists, multiple meta objects with the same name exist
             if (this.meta.containsKey(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName())) {
                 meta = this.meta.get(metric.getType() + "/" + metric.getIdent() + "/" + metric.getName());
             } else {
