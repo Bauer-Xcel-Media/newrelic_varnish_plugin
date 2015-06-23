@@ -9,3 +9,4 @@ config/newrelic.json
 config/plugin.json
 logs/
 out/
+dist/

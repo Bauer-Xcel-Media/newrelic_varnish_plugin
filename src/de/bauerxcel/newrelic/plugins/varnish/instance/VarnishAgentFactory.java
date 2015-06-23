@@ -47,7 +47,14 @@ public class VarnishAgentFactory extends AgentFactory {
         }
         Map<String, MetricMeta> meta = buildMetricMeta(metrics);
 
-        return new VarnishAgent(name, stats, meta);
+        // custom labels
+        JSONObject labels = Config.getValue("custom_labels");
+        Map<String, String> customLabels = new HashMap<String, String>();
+        if (null != labels) {
+            buildCustomLabels(customLabels, labels);
+        }
+
+        return new VarnishAgent(name, stats, meta, customLabels);
     }
 
     private String buildSshCommand(Map<String, Object> properties) throws ConfigurationException {
@@ -95,4 +102,16 @@ public class VarnishAgentFactory extends AgentFactory {
 
         return meta;
     }
+
+    private Map<String, String> buildCustomLabels(Map<String, String> customLabels, JSONObject labels) {
+        Iterator<?> nameIterator = labels.keySet().iterator();
+        while (nameIterator.hasNext()) {
+            String name = (String) nameIterator.next();
+            String label = (String) labels.get(name);
+            customLabels.put(name, label);
+        }
+
+        return customLabels;
+    }
+
 }

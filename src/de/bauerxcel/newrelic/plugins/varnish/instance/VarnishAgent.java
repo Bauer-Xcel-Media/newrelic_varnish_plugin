@@ -18,24 +18,26 @@ import java.util.Map;
 public class VarnishAgent extends Agent {
 
     private static final String GUID = "de.bauerxcel.newrelic.plugins.varnish";
-    private static final String VERSION = "1.0.0";
+    private static final String VERSION = "1.1.0";
     private static final Logger LOGGER = Logger.getLogger(VarnishAgent.class);
 
     private String name;
     private VarnishStats stats;
     private Map<String, MetricMeta> meta;
+    private Map<String, String> labels;
     private Boolean firstReport = true;
     private String agentInfo;
 
     /**
      * Constructor.
      */
-    public VarnishAgent(String name, VarnishStats stats, Map<String, MetricMeta> meta) throws ConfigurationException {
+    public VarnishAgent(String name, VarnishStats stats, Map<String, MetricMeta> meta, Map<String, String> labels) throws ConfigurationException {
         super(GUID, VERSION);
 
         this.name = name;
         this.stats = stats;
         this.meta = meta;
+        this.labels = labels;
     }
 
     @Override
@@ -118,7 +120,12 @@ public class VarnishAgent extends Agent {
         if (metric.hasIdent()) {
             spec.append("/").append(metric.getIdent());
         }
-        spec.append("/").append(metric.getLabel());
+        if (labels.containsKey(metric.getName())) {
+            spec.append("/").append(labels.get(metric.getName()));
+        }
+        else {
+            spec.append("/").append(metric.getLabel());
+        }
 
         return spec.toString();
     }

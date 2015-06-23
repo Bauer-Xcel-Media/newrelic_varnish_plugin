@@ -130,5 +130,12 @@
       "destroy": "Locks",
       "locks": "Operations"
     }
+  },
+  "custom_labels": {
+    "s_sess": "total sessions seen",
+    "s_req": "total requests seen",
+    "s_pipe": "total pipe sessions seen",
+    "s_pass": "total pass-ed requests seen",
+    "s_fetch": "total backend fetches initiated"
   }
 }
