@@ -6,6 +6,7 @@ import com.newrelic.metrics.publish.util.Logger;
 import de.bauerxcel.newrelic.plugins.varnish.Metric;
 import de.bauerxcel.newrelic.plugins.varnish.MetricMeta;
 import de.bauerxcel.newrelic.plugins.varnish.VarnishStats;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -53,7 +54,7 @@ public class VarnishAgent extends Agent {
             ArrayList<Metric> results = stats.fetch();   // Gather defined metrics
             reportMetrics(results);                      // Report Metrics to New Relic
         } catch (Exception e) {
-            LOGGER.error("Faild to report: ", e.getMessage());
+            LOGGER.error("Faild to report: ", e);
         }
 
         firstReport = false;
@@ -124,7 +125,7 @@ public class VarnishAgent extends Agent {
             spec.append("/").append(labels.get(metric.getName()));
         }
         else {
-            spec.append("/").append(metric.getLabel());
+            spec.append("/").append(metric.getDescription());
         }
 
         return spec.toString();
