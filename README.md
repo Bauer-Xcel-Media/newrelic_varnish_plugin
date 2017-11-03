@@ -7,7 +7,7 @@ The Varnish plugin was originally authored by [@juanformoso](https://github.com/
 **Added features:**
 
 * Installable through [NPI](https://discuss.newrelic.com/t/getting-started-for-the-platform-installer/842).
-* Support for Varnish 4
+* Support for Varnish 4, 5.1 and 5.2
 
 ----
 
@@ -36,7 +36,7 @@ Once you've installed the NPI tool, run the following command:
 
 ```
 	./npi install de.bauerxcel.newrelic.plugins.varnish
-```	
+```
 
 This command will take care of the creation of `newrelic.json` and `plugin.json` configuration files.  See the [configuration information](#configuration-information) section for more information.
 
