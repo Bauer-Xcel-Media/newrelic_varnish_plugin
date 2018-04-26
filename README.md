@@ -103,11 +103,16 @@ You will need to modify two configuration files in order to set this plugin up t
 
 #### Configuring the `plugin.json` file: 
 
-The `plugin.json` file has a provided template in the `config` directory named `plugin.template.json`.  If you are installing manually, make a copy of this template file and rename it to `plugin.json` (the New Relic Platform Installer will automatically handle creation of configuration files for you).  
+The `plugin.json` file has a provided template in the `config` directory named `plugin.template.json`.
+If you are installing manually, make a copy of this template file and rename it to `plugin.json` (the New Relic Platform
+Installer will automatically handle creation of configuration files for you).
 
-The plugin supports multiple agents that can be remote or local. Remote agents are accessed vi ssh. The user that runs the plugin must have ssh configured to be able to connect to the given host.
+The plugin supports multiple agents that can be remote or local.
+Remote agents are accessed vi ssh.
+The user that runs the plugin must have ssh configured to be able to connect to the given host.
 
-```
+
+```json
 {
   "agents": [
     {
@@ -122,9 +127,28 @@ The plugin supports multiple agents that can be remote or local. Remote agents a
 }
 ```
 
-Metrics reported to newrelic are configured under the `metric_units` key in the `plugin.json` file. A list of available fields can be obtained via `varnishstat -l`.
+**note** - The "name" attribute is used to identify specific instances in the New Relic UI.
 
+The plugin also supports to configure the instance of varnish to gather the stats from.
+Changing this configuration is may be required if the varnish shared memory log vsl is changed (as described in
+[Varnish Tuning Guide](https://book.varnish-software.com/4.0/chapters/Tuning.html#the-varnish-shared-memory-log-vsl)).
+
+Agent configuration example:
+```json
+{
+  "agents": [
+    {
+      "name": "The Agent name",
+      "instance": "/varnish/shared-memory-logs/"
+    }
+  ]
+}
 ```
+
+Metrics reported to newrelic are configured under the `metric_units` key in the `plugin.json` file.
+A list of available fields can be obtained via `varnishstat -l`.
+
+```json
 {
   "metric_units": {
      "mgt": {
@@ -133,8 +157,6 @@ Metrics reported to newrelic are configured under the `metric_units` key in the 
   }
 }
 ```
-
-**note** - The "name" attribute is used to identify specific instances in the New Relic UI. 
 
 #### Configuring the `newrelic.json` file: 
 
